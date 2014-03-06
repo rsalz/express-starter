@@ -42,7 +42,29 @@ $(document).ready(function() {
 
   })
 
-  //Write your code for p1-p12 here
-  //
+  $('#p6').click(function() {
+  	context.strokeStyle = 'green'
+  	context.strokeRect(340,10,100,200)
+  })
+
+ $('#p7').click(function() {
+ 	context.fillStyle = 'red'
+  	context.beginPath();
+  		context.arc(390,270,50,0,Math.PI);
+  		context.arc(390,270,50,Math.PI,0);
+  	context.closePath();
+  	context.stroke();
+  	context.fill();
+  	
+  })  
+
+
+ $('#p8').click(function() {
+  	context.strokeStyle = 'blue'
+  	context.fillStyle = 'yellow'
+  	context.fillRect(10,300,200,100);
+  	context.strokeRect(10,300,200,100);
+  	context.fill();
+  })
 
 });
