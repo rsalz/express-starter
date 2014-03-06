@@ -67,4 +67,29 @@ $(document).ready(function() {
   	context.fill();
   })
 
+ $('#p9').click(function() {
+ 	for (var x=240; x<490; x=x+50)
+ 		context.strokeRect(x,350,50,50);
+ 	
+ })
+
+$('#p10').click(function() {
+ 	for (var x=0; x<500; x=x+5)
+ 		context.strokeRect(x,450,5,5);
+ 	
+ })
+
+$('#p11').click(function() {
+ 	for (var x=0; x<500; x=x+5)
+ 		for (var y=0; y<500; y=y+5)
+ 			context.strokeRect(x,y,5,5);
+ 	
+ })
+
+$('#p12').click(function() {
+ 	for (var x=5; x<205; x=x+10)
+ 		context.arc(250,250,x,0,Math.PI);
+  		context.arc(250,250,x,Math.PI,0);
+ })
+
 });
