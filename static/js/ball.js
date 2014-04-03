@@ -13,9 +13,23 @@ $(document).ready(function() {
   var ball= {
     x: 20,
     y: 20,
-    r: 20    
+    r: 20,
+    vx: 5,
+    vy: 5    
   };
   var updateGame = function() {
+    if (ball.vx >0 && ball.x + ball.r >= canvas.width) {
+      ball.vx= -ball.vx
+    };
+    if (ball.vy >0 && ball.y +ball.r >= canvas.height) {
+      ball.vy= -ball.vy
+    };
+    if (ball.vx<0 && ball.x - ball.r <=0) {
+      ball.vx= -ball.vx
+    };
+    if (ball.vy<0 && ball.y -ball.r <= 0) {
+      ball.vy= -ball.vy
+    };
     context.fillStyle = 'white'
       context.fillRect(0,0,800,800);
       context.fill();
@@ -24,8 +38,8 @@ $(document).ready(function() {
       context.arc(ball.x,ball.y,ball.r,Math.PI,0);
     context.closePath();
     context.stroke();
-    ball.x+=5
-    ball.y+=5
+    ball.x+=ball.vx
+    ball.y+=ball.vy
   setTimeout(updateGame,10)
   };
   updateGame();
