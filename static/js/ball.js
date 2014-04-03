@@ -8,18 +8,24 @@ $(document).ready(function() {
   //PUT STUFF HERE
 
   //run an iteration of the game
-  var x= 20
-
+  //var x= 20
+  //var y=20
+  var ball= {
+    x: 20,
+    y: 20,
+    r: 20    
+  };
   var updateGame = function() {
     context.fillStyle = 'white'
       context.fillRect(0,0,800,800);
       context.fill();
     context.beginPath();
-      context.arc(x,20,20,0,Math.PI);
-      context.arc(x,20,20,Math.PI,0);
+      context.arc(ball.x,ball.y,ball.r,0,Math.PI);
+      context.arc(ball.x,ball.y,ball.r,Math.PI,0);
     context.closePath();
     context.stroke();
-    x=x+5
+    ball.x+=5
+    ball.y+=5
   setTimeout(updateGame,10)
   };
   updateGame();
