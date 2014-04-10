@@ -7,10 +7,44 @@ $(document).ready(function() {
 
   // PUT STUFF HERE
 
-  // Run an interation of the game
-  var updateGame = function() {
-    // PUT STUFF HERE
+ var ball= []
+  var b0= {
+    x:10,
+    y:10,
+    r:10,
+    vy:5,
+    vx:5
   };
+  var b1 = {
+    x:20,
+    y:20,
+    r:20,
+    vy:5,
+    vx:5
+  };
+  var b2 = {
+    x:30,
+    y:30,
+    r:30,
+    vy:5,
+    vx:5
+  };
+  ball.push(b0)
+  ball.push(b1)
+  ball.push(b2)
+  var updateGame = function() {
+    
+     context.fillStyle = 'white'
+      context.fillRect(0,0,800,800);
+      context.fill();
+    for (var i=0; i<=ball.length; i++) {
+    context.beginPath();
+      context.arc(ball[i].x,ball[i].y,ball[i].r,0,Math.PI);
+      context.arc(ball[i].x,ball[i].y,ball[i].r,Math.PI,0);
+    context.closePath();
+    context.stroke();
+
+  }}
 
   // Handle a canvas click event
   $('#game_canvas').click(function(e) {
