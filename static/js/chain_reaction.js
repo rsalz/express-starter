@@ -32,19 +32,37 @@ $(document).ready(function() {
   ball.push(b0)
   ball.push(b1)
   ball.push(b2)
+  
   var updateGame = function() {
-    
+    for (var k=0; k<ball.length; k++){
+    if (ball[k].vx >0 && ball[k].x + ball[k].r >= canvas.width) {
+      ball[k].vx= -ball[k].vx
+    };
+    if (ball[k].vy >0 && ball[k].y +ball[k].r >= canvas.height) {
+      ball[k].vy= -ball[k].vy
+    };
+    if (ball[k].vx<0 && ball[k].x - ball[k].r <=0) {
+      ball[k].vx= -ball[k].vx
+    };
+    if (ball[k].vy<0 && ball[k].y -ball[k].r <= 0) {
+      ball[k].vy= -ball[k].vy
+  };
+}
      context.fillStyle = 'white'
       context.fillRect(0,0,800,800);
       context.fill();
-    for (var i=0; i<=ball.length; i++) {
+    for (var i=0; i<ball.length; i++) {
     context.beginPath();
       context.arc(ball[i].x,ball[i].y,ball[i].r,0,Math.PI);
       context.arc(ball[i].x,ball[i].y,ball[i].r,Math.PI,0);
     context.closePath();
     context.stroke();
-
-  }}
+    ball[i].x+=ball[i].vx
+    ball[i].y+=ball[i].vy
+  };
+setTimeout(updateGame, 10)
+};
+updateGame();
 
   // Handle a canvas click event
   $('#game_canvas').click(function(e) {
