@@ -6,33 +6,19 @@ $(document).ready(function() {
   var height = canvas.height;
 
   // PUT STUFF HERE
+var numBalls= 100
 
  var ball= []
-  var b0= {
-    x:10,
-    y:10,
+  for (var j=0; j<numBalls; j++) {
+   var b= {
+    x:width*Math.random(),
+    y:height*Math.random(),
     r:10,
-    vy:5,
-    vx:5
+    vy:10*Math.random(),
+    vx:10*Math.random()
   };
-  var b1 = {
-    x:20,
-    y:20,
-    r:20,
-    vy:5,
-    vx:5
-  };
-  var b2 = {
-    x:30,
-    y:30,
-    r:30,
-    vy:5,
-    vx:5
-  };
-  ball.push(b0)
-  ball.push(b1)
-  ball.push(b2)
-  
+ball.push(b);
+};
   var updateGame = function() {
     for (var k=0; k<ball.length; k++){
     if (ball[k].vx >0 && ball[k].x + ball[k].r >= canvas.width) {
