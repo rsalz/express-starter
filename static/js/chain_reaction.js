@@ -6,7 +6,7 @@ $(document).ready(function() {
   var height = canvas.height;
 
   // PUT STUFF HERE
-var numBalls= 100
+var numBalls= 10
 
  var ball= []
   for (var j=0; j<numBalls; j++) {
@@ -19,6 +19,7 @@ var numBalls= 100
   };
 ball.push(b);
 };
+
   var updateGame = function() {
     for (var k=0; k<ball.length; k++){
     if (ball[k].vx >0 && ball[k].x + ball[k].r >= canvas.width) {
@@ -55,8 +56,15 @@ updateGame();
     // Find the mouse x and y relative to the top-left corner of the canvas
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
-    // PUT STUFF HERE
-  });
 
-  updateGame();
+  
+   var b= {
+    x:x,
+    y:y,
+    r:10,
+    vy:10*Math.random(),
+    vx:10*Math.random()
+  };
+ball.push(b);
+});
 });
