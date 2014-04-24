@@ -28,11 +28,17 @@ var reactions= []
       var xdiff=reactions[j].x-ball[i].x
       var ydiff=reactions[j].y-ball[i].y
       var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff)
-      if (dist<reactions[j].r+ball[j].r){
+      if (dist<reactions[j].r+ball[i].r){
         var collided=true
       }
     }
           if (collided===true){
+        var reactionball= {
+          x: ball[i].x,
+          y: ball[i].y,
+          r: 1
+        }
+        reactions.push(reactionball)
         ball.splice(i,1);
         i--
       }
