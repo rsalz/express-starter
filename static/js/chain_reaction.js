@@ -22,6 +22,17 @@ ball.push(b);
 var reactions= []
 
   var updateGame = function() {
+    for (var i=0; i<ball.length; i++) {
+    for (var j=0; j<reactions.length; j++) {
+      var xdiff=reactions[j].x-ball[i].x
+      var ydiff=reactions[j].y-ball[i].y
+      var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff)
+      if (dist<reactions[j].r+ball[j].r){
+        alert('BOOM')
+      }
+    }
+  }
+
     for (var k=0; k<ball.length; k++){
     if (ball[k].vx >0 && ball[k].x + ball[k].r >= canvas.width) {
       ball[k].vx= -ball[k].vx
@@ -50,7 +61,7 @@ var reactions= []
       context.arc(reactions[i].x,reactions[i].y,reactions[i].r,Math.PI,0);
     context.closePath();
     context.stroke();
-  };
+  }
     for (var i=0; i<ball.length; i++) {
     context.beginPath();
       context.arc(ball[i].x,ball[i].y,ball[i].r,0,Math.PI);
@@ -59,7 +70,8 @@ var reactions= []
     context.stroke();
     ball[i].x+=ball[i].vx
     ball[i].y+=ball[i].vy
-  };
+  }
+  
 setTimeout(updateGame, 10)
 };
 updateGame();
