@@ -40,6 +40,11 @@ var reactions= []
       context.fillRect(0,0,800,800);
       context.fill();
     for (var i=0; i<reactions.length; i++) {
+      if (reactions[i].r<30){
+        reactions[i].r++;
+      }
+    }
+    for (var i=0; i<reactions.length; i++) {
     context.beginPath();
       context.arc(reactions[i].x,reactions[i].y,reactions[i].r,0,Math.PI);
       context.arc(reactions[i].x,reactions[i].y,reactions[i].r,Math.PI,0);
@@ -69,7 +74,7 @@ updateGame();
    var b= {
     x:x,
     y:y,
-    r:30,
+    r:1,
   };
 reactions.push(b);
 });
