@@ -23,15 +23,21 @@ var reactions= []
 
   var updateGame = function() {
     for (var i=0; i<ball.length; i++) {
+      var collided= false
     for (var j=0; j<reactions.length; j++) {
       var xdiff=reactions[j].x-ball[i].x
       var ydiff=reactions[j].y-ball[i].y
       var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff)
       if (dist<reactions[j].r+ball[j].r){
-        alert('BOOM')
+        var collided=true
       }
     }
-  }
+          if (collided===true){
+        ball.splice(i,1);
+        i--
+      }
+    }
+  
 
     for (var k=0; k<ball.length; k++){
     if (ball[k].vx >0 && ball[k].x + ball[k].r >= canvas.width) {
@@ -73,7 +79,7 @@ var reactions= []
   }
   
 setTimeout(updateGame, 10)
-};
+}
 updateGame();
 
   // Handle a canvas click event
