@@ -19,6 +19,7 @@ var numBalls= 10
   };
 ball.push(b);
 };
+var reactions= []
 
   var updateGame = function() {
     for (var k=0; k<ball.length; k++){
@@ -38,6 +39,13 @@ ball.push(b);
      context.fillStyle = 'white'
       context.fillRect(0,0,800,800);
       context.fill();
+    for (var i=0; i<reactions.length; i++) {
+    context.beginPath();
+      context.arc(reactions[i].x,reactions[i].y,reactions[i].r,0,Math.PI);
+      context.arc(reactions[i].x,reactions[i].y,reactions[i].r,Math.PI,0);
+    context.closePath();
+    context.stroke();
+  };
     for (var i=0; i<ball.length; i++) {
     context.beginPath();
       context.arc(ball[i].x,ball[i].y,ball[i].r,0,Math.PI);
@@ -61,10 +69,8 @@ updateGame();
    var b= {
     x:x,
     y:y,
-    r:10,
-    vy:10*Math.random(),
-    vx:10*Math.random()
+    r:30,
   };
-ball.push(b);
+reactions.push(b);
 });
 });
