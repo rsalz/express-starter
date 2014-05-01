@@ -10,6 +10,8 @@ $(document).ready(function() {
 var numBalls= 10
 var reacting= false
 var numReacted= 0
+var gameState= "menu"
+var menuText= "click to play!"
 
  var ball= []
   for (var j=0; j<numBalls; j++) {
@@ -26,6 +28,12 @@ ball.push(b);
 var reactions= []
 
   var updateGame = function() {
+    context.clearRect(0,0,canvas.width,canvas.height)
+    if (gameState=="menu") {
+    context.fillFont="50px Arial"
+    context.fillText(menuText,300,300);
+    }
+    else if (gameState=="playing") {
     for (var i=0; i<ball.length; i++) {
       var collided= false
     for (var j=0; j<reactions.length; j++) {
@@ -65,9 +73,9 @@ var reactions= []
       ball[k].vy= -ball[k].vy
   };
 }
-     context.fillStyle = 'white'
-      context.fillRect(0,0,800,800);
-      context.fill();
+     // context.fillStyle = 'white'
+      //context.fillRect(0,0,800,800);
+     // context.fill();
     for (var i=0; i<reactions.length; i++) {
       reactions[i].timer++;
 
@@ -102,13 +110,36 @@ var reactions= []
   context.fillStyle="red"
   context.fillFont="30px Arial"
   context.fillText("Reactions:"+ numReacted,10,10);
-setTimeout(updateGame, 10)
+  if (reacting==true && reactions.length==0) {
+    menuText="Game Over! You reached "+numReacted+" balls";
+    gameState="menu"
+  }
 }
+setTimeout(updateGame, 10)
+};
 updateGame();
 
   // Handle a canvas click event
   $('#game_canvas').click(function(e) {
-  if (reacting==false) {
+
+  if (gameState=="menu") {
+    gameState="playing";
+    reacting=false;
+    numReacted=0;
+    ball=[];
+     for (var j=0; j<numBalls; j++) {
+   var b= {
+    x:width*Math.random(),
+    y:height*Math.random(),
+    r:10,
+    vy:10*Math.random(),
+    vx:10*Math.random(),
+    timer: 0
+  };
+ball.push(b);
+}
+  }
+  else if (gameState=="playing" && reacting==false) {
    reacting=true
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
