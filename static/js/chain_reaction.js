@@ -15,7 +15,8 @@ var numBalls= 10
     y:height*Math.random(),
     r:10,
     vy:10*Math.random(),
-    vx:10*Math.random()
+    vx:10*Math.random(),
+    timer: 0
   };
 ball.push(b);
 };
@@ -36,7 +37,8 @@ var reactions= []
         var reactionball= {
           x: ball[i].x,
           y: ball[i].y,
-          r: 1
+          r: 1,
+          timer: 0
         }
         reactions.push(reactionball)
         ball.splice(i,1);
@@ -63,8 +65,18 @@ var reactions= []
       context.fillRect(0,0,800,800);
       context.fill();
     for (var i=0; i<reactions.length; i++) {
-      if (reactions[i].r<30){
+      reactions[i].timer++;
+
+      if (reactions[i].timer>200){
+        reactions[i].r--;
+      }
+      else if (reactions[i].r<30){
         reactions[i].r++;
+      }
+
+      if (reactions[i].r==0){
+        reactions.splice(i,1);
+        i--;
       }
     }
     for (var i=0; i<reactions.length; i++) {
@@ -99,6 +111,7 @@ updateGame();
     x:x,
     y:y,
     r:1,
+    timer: 0
   };
 reactions.push(b);
 });
